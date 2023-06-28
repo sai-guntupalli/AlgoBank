@@ -15,9 +15,12 @@ export const navigation = [
   {
     title: 'Trees',
     links: [
-      { title: 'Home', href: '/trees' },
+      { title: 'Understanding Trees', href: '/trees' },
       { title: 'Max Depth of Tree', href: '/trees/max-depth-of-tree' },
-      { title: 'Right Side View of Tree', href: '/trees/right-side-view-of-tree' },
+      {
+        title: 'Right Side View of Tree',
+        href: '/trees/right-side-view-of-tree',
+      },
       { title: 'BST Range Sum', href: '/trees/BST-range-sum' },
     ],
   },
@@ -36,7 +39,7 @@ export const navigation = [
       },
       { title: 'The butterfly effect', href: '/docs/the-butterfly-effect' },
     ],
-  }
+  },
   // },
   // {
   //   title: 'Advanced guides',

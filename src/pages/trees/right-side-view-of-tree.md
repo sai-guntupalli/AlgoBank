@@ -2,6 +2,7 @@
 title: Right Side View of a Tree
 description: Find the right side view of given tree.
 ---
+
 [https://leetcode.com/problems/binary-tree-right-side-view/description/](https://leetcode.com/problems/binary-tree-right-side-view/description/)
 
 Given the root of a binary tree, imagine yourself standing on the right side of it, return the values of the res you can see ordered from top to bottom.
@@ -10,6 +11,7 @@ Input: root = [1,2,3,null,5,null,4]
 Output: [1,3,4]
 
 ## Solution
+
 ```js
 from typing import Optional, List
 
@@ -31,7 +33,7 @@ class Solution:
             if len(res) <= level:
                 res.append(root.val)
 
-            #change order to change the view angle. right first for right view,
+            # change order to change the view angle. right first for right view,
             # left first for left view.
             find_right_res(root.right, level + 1)
             find_right_res(root.left, level + 1)

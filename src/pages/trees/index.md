@@ -1,114 +1,147 @@
 ---
-title: Getting started
+title: Trees
 pageTitle: CacheAdvance - Never miss the cache again.
 description: Cache every single thing your app could ever do ahead of time, so your code never even has to run at all.
 ---
 
-Learn how to get CacheAdvance set up in your project in under thirty minutes or it's free. {% .lead %}
+## Tree Terminology
 
-{% quick-links %}
+**Vertex/Node** : It contains the key or value or pointers to child vertex. Bottom most node is called as leaf node or external node. It has no link going down from it. A node having a child node and is below root is called internal node.
 
-{% quick-link title="Installation" icon="installation" href="/" description="Step-by-step guides to setting up your system and installing the library." /%}
+**Root** : It is the top most node
 
-{% quick-link title="Architecture guide" icon="presets" href="/" description="Learn how the internals work and contribute." /%}
+**Edges** : It is a link between two node.
 
-{% quick-link title="Plugins" icon="plugins" href="/" description="Extend the library with third-party plugins or write your own." /%}
+**Height of a Tree** : It is the height of the root node or the depth of the deepest node.
 
-{% quick-link title="API reference" icon="theming" href="/" description="Learn to easily customize and modify your app's visual design to fit your brand." /%}
+**Height of a Node** : It is the number of edges from the node to the last leaf (deepest node) of the tree.
 
-{% /quick-links %}
+**Depth of a Node** : It is the number of edges from the root to the node.
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste.
+**Degree** : It is the total number of branches of that node.
 
----
+**Forest** : It is the collection of disjoint trees.
 
-## Quick start
+## Types of Trees
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur.
+### Binary Tree
 
-### Installing dependencies
+A binary tree is a tree data structure in which **each parent node can have at most two children**. Each node of a binary tree consists of three items:
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+- data item
+- address of left child
+- address of right child
 
-```shell
-npm install @tailwindlabs/cache-advance
-```
+#### Types of Binary Tree
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+**Full Binary Tree**
 
-{% callout type="warning" title="Oh no! Something bad happened!" %}
-This is what a disclaimer message looks like. You might want to include inline `code` in it. Or maybe you’ll want to include a [link](/) in it. I don’t think we should get too carried away with other scenarios like lists or tables — that would be silly.
-{% /callout %}
+A full Binary tree is a special type of binary tree in which every parent node/internal node has either two or no children.
+![Full Binary Tree](images/full-binary-tree_0.webp)
 
-### Configuring the library
+**Perfect Binary Tree**
 
-Sit commodi iste iure molestias qui amet voluptatem sed quaerat. Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque velit tenetur quaerat exercitationem. Consequatur et cum atque mollitia qui quia necessitatibus.
+A perfect binary tree is a type of binary tree in which every internal node has exactly two child nodes and all the leaf nodes are at the same level.
+![Perfect Binary Tree](images/perfect-binary-tree_0.webp)
+
+**Complete Binary Tree**
+
+A complete binary tree is just like a full binary tree, but with two major differences
+
+- Every level must be completely filled
+- All the leaf elements must lean towards the left.
+- The last leaf element might not have a right sibling i.e. a complete binary tree doesn't have to be a full binary tree.
+  ![Complete Binary Tree](images/complete-binary-tree_0.webp)
+
+### Binary Search Tree (BST)
+
+Binary search tree is a data structure that quickly allows us to maintain a sorted list of numbers.
+It is called a binary tree because each tree node has a maximum of two children.
+It is called a search tree because it can be used to search for the presence of a number in O(log(n)) time.
+
+The properties that separate a binary search tree from a regular binary tree is
+
+- All nodes of left subtree are less than the root node
+- All nodes of right subtree are more than the root node
+- Both subtrees of each node are also BSTs i.e. they have the above two properties
+  bst-vs-not-bst
+  ![Binary Search Tree](images/bst-vs-not-bst.webp)
+
+## Tree Traversal
+
+Traversing a tree means visiting every node in the tree. You might, for instance, want to add all the values in the tree or find the largest one. For all these operations, you will need to visit each node of the tree.
+
+### Depth-first search (DFS) algorithm
+
+It starts with the root node and first visits all nodes of one branch as deep as possible before backtracking. It visits all other branches in a similar fashion.
+
+> InOrder Traversal, PreOrder Traversal, PostOrder Traversal
+
+### Breadth-first search (BFS) algorithm
+
+This also starts from the root node and visits all nodes of current depth before moving to the next depth in the tree.
+
+> LevelOrder Traversal
+
+### Inorder Traversal
+
+- Visit all the nodes in the left subtree
+- Then the root node
+- Visit all the nodes in the right subtree
+
+> Inorder traversal of a binary search tree will always give you nodes in a sorted manner.
 
 ```js
-// cache-advance.config.js
-export default {
-  strategy: 'predictive',
-  engine: {
-    cpus: 12,
-    backups: ['./storage/cache.wtf'],
-  },
-}
+def in_order_traversal(root):
+    if not root:
+        return
+    in_order_traversal(root.left)
+    print(root.val, end=" ")
+    in_order_traversal(root.right)
+
 ```
 
-Possimus saepe veritatis sint nobis et quam eos. Architecto consequatur odit perferendis fuga eveniet possimus rerum cumque. Ea deleniti voluptatum deserunt voluptatibus ut non iste. Provident nam asperiores vel laboriosam omnis ducimus enim nesciunt quaerat. Minus tempora cupiditate est quod.
+![InOrder Traversal](images/inorder-traversal.gif)
 
-{% callout title="You should know!" %}
-This is what a disclaimer message looks like. You might want to include inline `code` in it. Or maybe you’ll want to include a [link](/) in it. I don’t think we should get too carried away with other scenarios like lists or tables — that would be silly.
-{% /callout %}
+### PreOrder Traversal
 
----
+- First the root node
+- Visit all the nodes in the left subtree
+- Visit all the nodes in the right subtree
 
-## Basic usage
+```js
+def pre_order_traversal(root):
+    if not root:
+        return
 
-Praesentium laudantium magni. Consequatur reiciendis aliquid nihil iusto ut in et. Quisquam ut et aliquid occaecati. Culpa veniam aut et voluptates amet perspiciatis. Qui exercitationem in qui. Vel qui dignissimos sit quae distinctio.
+    print(root.val, end=" ")
+    pre_order_traversal(root.left)
+    pre_order_traversal(root.right)
 
-### Your first cache
+```
 
-Minima vel non iste debitis. Consequatur repudiandae et quod accusamus sit molestias consequatur aperiam. Et sequi ipsa eum voluptatibus ipsam. Et quisquam ut.
+![Preorder Traversal](images/preorder-traversal.gif)
 
-Qui quae esse aspernatur fugit possimus. Quam sed molestiae temporibus. Eum perferendis dignissimos provident ea et. Et repudiandae quasi accusamus consequatur dolore nobis. Quia reiciendis necessitatibus a blanditiis iste quia. Ut quis et amet praesentium sapiente.
+### PostOrder Traversal
 
-Atque eos laudantium. Optio odit aspernatur consequuntur corporis soluta quidem sunt aut doloribus. Laudantium assumenda commodi.
+- Visit all the nodes in the left subtree
+- Visit all the nodes in the right subtree
+- Then the root node
 
-### Clearing the cache
+```js
+def post_order_traversal(root):
+    if not root:
+        return
+    post_order_traversal(root.left)
+    post_order_traversal(root.right)
+    print(root.val, end=" ")
 
-Vel aut velit sit dolor aut suscipit at veritatis voluptas. Laudantium tempore praesentium. Qui ut voluptatem.
+```
 
-Ea est autem fugiat velit esse a alias earum. Dolore non amet soluta eos libero est. Consequatur qui aliquam qui odit eligendi ut impedit illo dignissimos.
+![Postorder Traversal](images/postorder-traversal.gif)
 
-Ut dolore qui aut nam. Natus temporibus nisi voluptatum labore est ex error vel officia. Vero repellendus ut. Suscipit voluptate et placeat. Eius quo corporis ab et consequatur quisquam. Nihil officia facere dolorem occaecati alias deleniti deleniti in.
+### Level Order Traversal
 
-### Adding middleware
+It will visit all the nodes present at the same level one-by-one from left to right, and then it moves to the next level to visit all the nodes of that level.
 
-Officia nobis tempora maiores id iusto magni reprehenderit velit. Quae dolores inventore molestiae perspiciatis aut. Quis sequi officia quasi rem officiis officiis. Nesciunt ut cupiditate. Sunt aliquid explicabo enim ipsa eum recusandae. Vitae sunt eligendi et non beatae minima aut.
-
-Harum perferendis aut qui quibusdam tempore laboriosam voluptatum qui sed. Amet error amet totam exercitationem aut corporis accusantium dolorum. Perspiciatis aut animi et. Sed unde error ut aut rerum.
-
-Ut quo libero aperiam mollitia est repudiandae quaerat corrupti explicabo. Voluptas accusantium sed et doloribus voluptatem fugiat a mollitia. Numquam est magnam dolorem asperiores fugiat. Soluta et fuga amet alias temporibus quasi velit. Laudantium voluptatum perspiciatis doloribus quasi facere. Eveniet deleniti veniam et quia veritatis minus veniam perspiciatis.
-
----
-
-## Getting help
-
-Consequuntur et aut quisquam et qui consequatur eligendi. Necessitatibus dolorem sit. Excepturi cumque quibusdam soluta ullam rerum voluptatibus. Porro illo sequi consequatur nisi numquam nisi autem. Ut necessitatibus aut. Veniam ipsa voluptatem sed.
-
-### Submit an issue
-
-Inventore et aut minus ut voluptatem nihil commodi doloribus consequatur. Facilis perferendis nihil sit aut aspernatur iure ut dolores et. Aspernatur odit dignissimos. Aut qui est sint sint.
-
-Facere aliquam qui. Dolorem officia ipsam adipisci qui molestiae. Error voluptatem reprehenderit ex.
-
-Consequatur enim quia maiores aperiam et ipsum dicta. Quam ut sit facere sit quae. Eligendi veritatis aut ut veritatis iste ut adipisci illo.
-
-### Join the community
-
-Praesentium facilis iste aliquid quo quia a excepturi. Fuga reprehenderit illo sequi voluptatem voluptatem omnis. Id quia consequatur rerum consectetur eligendi et omnis. Voluptates iusto labore possimus provident praesentium id vel harum quisquam. Voluptatem provident corrupti.
-
-Eum et ut. Qui facilis est ipsa. Non facere quia sequi commodi autem. Dicta autem sit sequi omnis impedit. Eligendi amet dolorum magnam repudiandae in a.
-
-Molestiae iusto ut exercitationem dolorem unde iusto tempora atque nihil. Voluptatem velit facere laboriosam nobis ea. Consequatur rerum velit ipsum ipsam. Et qui saepe consequatur minima laborum tempore voluptatum et. Quia eveniet eaque sequi consequatur nihil eos.
+![Level order Traversal](images/levelorder-traversal.gif)
