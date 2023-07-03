@@ -21,7 +21,13 @@ export const navigation = [
         title: 'Right Side View of Tree',
         href: '/trees/right-side-view-of-tree',
       },
+      { title: 'BST', href: '/trees/BST' },
       { title: 'BST Range Sum', href: '/trees/BST-range-sum' },
+      { title: 'Find Lonley Nodes', href: '/trees/find-lonley-nodes' },
+      { title: 'Level Order Traversal', href: '/trees/level-order-traversal' },
+      { title: 'Path Sum', href: '/trees/path-sum' },
+      { title: 'Same Tree', href: '/trees/same-tree' },
+      { title: 'Validate BST Tree', href: '/trees/validate-BST' },
     ],
   },
   {
